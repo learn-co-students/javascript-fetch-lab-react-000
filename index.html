@@ -45,7 +45,15 @@
       <!--fill me in with templatey goodness-->
     </script>
     <script id="issues-template" type="text/x-handlebars-template">
-
+      <ul>
+        {{#each issues}}
+          <li>
+            <p>URL: {{this.url}}</p>
+            <p>Title: {{this.titl}}</p>
+            <p>Body: {{this.body}}</p>
+          </li>
+        {{/each}}
+    </ul>
     </script>
   </body>
 </html>
