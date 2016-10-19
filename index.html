@@ -45,9 +45,11 @@
       {{full_name}}
     </script>
     <script id="issues-template" type="text/x-handlebars-template">
-      {{title}}
-      {{link}}
-      {{body}}
+      {{#each issues}}
+        {{title}}
+        {{url}}
+        {{body}}
+      {{/each}}
     </script>
   </body>
 </html>

@@ -1,5 +1,5 @@
 function getIssues() {
-  const repo = 'talum/javascript-fetch-lab-react-000';
+  const repo = 'javascript-fetch-lab';
   fetch('https://api.github.com/repos/' + repo + '/issues', {
     method: 'GET'
   }).then(res => res.json()).then(json => showIssues(json));
@@ -10,15 +10,12 @@ function showIssues(json) {
   var source = 
   document.getElementById('issues-template').innerHTML;
   var template = Handlebars.compile(source);
-  var listHtml = json.map((issue) => {
-    var context = {link: issue.url, title: issue.title, body: issue.body};
-    return template(context);
-})
-  issuesDiv.innerHTML = listHtml;
+  var context = json;
+  issuesDiv.innerHTML = template(context);
 }
 
 function createIssue() {
-  const repo = 'talum/javascript-fetch-lab-react-000';
+  const repo = 'javascript-fetch-lab';
   var title = document.getElementById('title').value;
   var text = document.getElementById('body').value;
   var postData = {
@@ -26,7 +23,7 @@ function createIssue() {
     body: text
   }
   fetch('https://api.github.com/repos/' + repo + '/issues', {
-    method: 'POST',
+    method: 'post',
     headers: {
       Authorization: `token ${getToken()}`
     },
@@ -40,7 +37,7 @@ function showResults(json) {
   var source = 
   document.getElementById('repo-template').innerHTML;
   var template = Handlebars.compile(source);
-  var context = {html_url: json.html_url, full_name: json.full_name};
+  var context = json;
   var html = template(context);
   results.innerHTML = html;
 }
@@ -49,7 +46,7 @@ function forkRepo() {
   const repo = 'learn-co-curriculum/javascript-fetch-lab'
   //use fetch to fork it!
   fetch('https://api.github.com/repos/' + repo + '/forks', {
-    method: 'POST',
+    method: 'post',
     headers: {
       Authorization: `token ${getToken()}`
     }
